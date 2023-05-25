@@ -1,0 +1,10 @@
+Web Layer - Service Layer - Repository Layer
+        DTOs            Domain Model
+
+Web ->  Request and Response (Controller )
+Service -> Transaction and manage Domain sequence
+Repository -> Access to DB
+
+
+DTO (Data Transfer Object) is Obj used for data exchange
+Domain Model -> Developments for Human conceptual. (Handle service)

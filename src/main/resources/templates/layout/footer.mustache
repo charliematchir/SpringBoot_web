@@ -1,0 +1,16 @@
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<!--index.js 추가-->
+
+<!-- src/main/resources/static에 위치한 js css, img 파일들은 url에서 / 로 설정됨-->
+<!-- js 의 경우 static 부터 절대경로에 파일이 위치한 위치 추가해주면 됨 -->
+<script src="/js/app/index.js"></script>
+</body>
+</html>
+
+<!-- css는 헤더에, js는 footer에 둠
+     head 가 다 실행되고 body가 실행 되기에 head 불러지기 전까지는 백지 화면만 뜸
+     js 용량이 크면 body의 실행이 늦기에 js는 body의 하단에 두어 화면 다 그리고 호출하는게 좋다. -->
+
+<!-- 보면 header의 <body> 는 footer의 </body> 로 이어져 있음 -->

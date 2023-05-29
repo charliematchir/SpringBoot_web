@@ -1,7 +1,9 @@
 package com.charlie.admin.web;
 
+import com.charlie.admin.config.auth.dto.SessionUser;
 import com.charlie.admin.service.PostsService;
 import com.charlie.admin.web.dto.PostsResponseDto;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,11 +18,19 @@ public class IndexController {
 
 
     private final PostsService postsService;
+    private final HttpSession httpSession;
     @GetMapping("/")
     public String index(Model model) {
         // Model은 서버 템플릿 엔진에서 사용할 수 있는 객체를 저장할 수 있음.
         //  findAllDesc로 가져온 결과를 posts로 index.mustache로 전달함
         model.addAttribute("posts", postsService.findAllDesc());
+
+        // customOAuth2UseService 에서 로그인 성공시 세션에 SessionUser 저장하도록 구성
+        // 로스인 성공시 httpSession.getAttribute("user") 로 값 가져올수 있음
+        SessionUser user = (User) httpSession.getAttribute("user");
+        if (user != null) {
+            model.addAttribute("userName", user.getName());
+        }
         return "index";
     }
 

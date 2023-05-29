@@ -26,7 +26,7 @@ var main = {
             type: 'POST',
             url: '/api/v1/posts',
             dataType: 'json',
-            contentType: 'application/json; charset=utf-8',
+            contentType: 'application/json; charset=utf-8/euc-kr',
             data: JSON.stringify(data)
         }).done(function () {
             alert('article submited.');
@@ -46,7 +46,7 @@ var main = {
             type: 'PUT',
             url: '/api/v1/posts/' +id,
             dataType: 'json',
-            contentType: 'application/json; charset=utf-8',
+            contentType: 'application/json; charset=utf-8/euc-kr',
             data: JSON.stringify(data)
         }).done(function () {
             alert('Article Updated.');
@@ -62,7 +62,7 @@ var main = {
             type: 'DELETE',
             url: '/api/v1/posts/' + id,
             dataType: 'json',
-            contentType: 'application/json; charset=utf-8'
+            contentType: 'application/json; charset=utf-8/euc-kr'
         }).done(function() {
             alert("Article Deleted.");
             window.location.href = '/';

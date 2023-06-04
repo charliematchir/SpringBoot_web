@@ -18,15 +18,16 @@
                     <a href="/posts/save" role="button"
                        class="btn btn-primary">submit</a>
                     <!-- mustache는 if else 문 없어 true/false만 판단하기에 항상 최종값을 넘겨줘야함 UserName이 있다면 노출하도록 -->
-                    {{#userNaeme}}
+                    {{#userName}}
                         Logged in as: <span id="user">{{userName}}</span>
                         <!--스프링 시큐리티 기본 제공 로그아웃 버튼 (컨트롤러 생성할 필요없어)-->
                         <a href="/logout" class="btn btn-info active" role="button">Logout</a>
-                    {{/userNaeme}}
+                    {{/userName}}
                     <!-- 해당 값 없을때는 ^을 사용함 / 없을땐 로그인 버튼 노출-->
                     {{^userName}}
-                    <!--  기본 제공 로그인  URL  -->
+                    <!--  기본 제공 로그인  URL   /oauth2/authorization/ 까지만 고정이고 마지막 path는 소셜로그인 코드따라-->
                     <a href="/oauth2/authorization/google" class="btn btn-success active" role="button">Google Login</a>
+                        <a href="/oauth2/authorization/naver" class="btn btn-success active" role="button">Naver Login</a>
                     {{/userName}}
                 </div>
             </div>

@@ -2,7 +2,6 @@ package com.charlie.admin.config.auth.dto;
 
 import com.charlie.admin.domain.user.User;
 import lombok.Getter;
-
 import java.io.Serializable;
 
 //SessionUser에는 인증된 사용자 정보만 필요하기에 3가지 필드만 선언

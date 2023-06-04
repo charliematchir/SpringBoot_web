@@ -1,7 +1,7 @@
 package com.charlie.admin.domain.posts;
 
 import com.charlie.admin.domain.BaseTimeEntity;
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

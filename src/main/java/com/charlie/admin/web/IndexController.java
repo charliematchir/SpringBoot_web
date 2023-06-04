@@ -1,9 +1,11 @@
 package com.charlie.admin.web;
 
+import com.charlie.admin.config.auth.LoginUser;
 import com.charlie.admin.config.auth.dto.SessionUser;
+//import com.charlie.admin.domain.user.User;
 import com.charlie.admin.service.PostsService;
 import com.charlie.admin.web.dto.PostsResponseDto;
-import jakarta.servlet.http.HttpSession;
+import javax.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,19 +17,20 @@ import org.springframework.web.bind.annotation.PathVariable;
 @RequiredArgsConstructor
 @Controller
 public class IndexController {
-
-
     private final PostsService postsService;
     private final HttpSession httpSession;
+
+
+    // 기존 http세션.getattr 통해서 가져오던 걸 index 파라미터에 LoginUser를 사용해서 세션 정보 가져올수 있게됨
     @GetMapping("/")
-    public String index(Model model) {
+    public String index(Model model, @LoginUser SessionUser user) {
         // Model은 서버 템플릿 엔진에서 사용할 수 있는 객체를 저장할 수 있음.
         //  findAllDesc로 가져온 결과를 posts로 index.mustache로 전달함
         model.addAttribute("posts", postsService.findAllDesc());
 
         // customOAuth2UseService 에서 로그인 성공시 세션에 SessionUser 저장하도록 구성
-        // 로스인 성공시 httpSession.getAttribute("user") 로 값 가져올수 있음
-        SessionUser user = (User) httpSession.getAttribute("user");
+        // 로그인 성공시 httpSession.getAttribute("user") 로 값 가져올수 있음
+//        SessionUser user = (SessionUser) httpSession.getAttribute("user");
         if (user != null) {
             model.addAttribute("userName", user.getName());
         }

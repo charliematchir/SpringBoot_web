@@ -20,36 +20,42 @@
 //apply plugin: 'io.spring.dependency-management'
 
 plugins {
-    id 'org.springframework.boot' version '3.1.0'
+    id 'org.springframework.boot' version '2.5.2'
     id 'io.spring.dependency-management' version '1.1.0'
     id 'java'
-    id 'eclipse'
     id 'io.freefair.lombok' version "8.0.1"
 }
 
 group 'sbw_aws'
-version '1.0-SNAPSHOT'
+version '1.0-SNAPSHOT' + new Date().format("yyyyMMddHHmmss")
+sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
-}
-
-dependencies {
-    implementation('org.springframework.boot:spring-boot-starter-mustache')
-    implementation('org.springframework.boot:spring-boot-starter-web')
-    implementation('org.projectlombok:lombok')
-    implementation('org.springframework.boot:spring-boot-starter-data-jpa')
-    implementation('com.h2database:h2')
-    implementation('org.springframework.boot:spring-boot-starter-oauth2-client')
-
-    testImplementation('org.springframework.boot:spring-boot-starter-test')
-
-//    compile('org.springframework.boot:spring-boot-starter-web')
-//    testCompile('org.springframework.boot:spring-boot-starter-test')
-//    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
-//    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    jcenter()
 }
 
 test {
     useJUnitPlatform()
+}
+
+dependencies {
+    implementation('org.springframework.boot:spring-boot-starter-web')
+    implementation('org.springframework.boot:spring-boot-starter-mustache')
+
+    implementation('org.projectlombok:lombok')
+    annotationProcessor('org.projectlombok:lombok')
+    testImplementation('org.projectlombok:lombok')
+    testAnnotationProcessor('org.projectlombok:lombok')
+
+
+    implementation('org.springframework.boot:spring-boot-starter-data-jpa')
+    implementation('org.mariadb.jdbc:mariadb-java-client')
+    implementation('com.h2database:h2')
+
+    implementation('org.springframework.boot:spring-boot-starter-oauth2-client')
+    implementation('org.springframework.session:spring-session-jdbc')
+
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
+    testImplementation('org.springframework.security:spring-security-test')
 }

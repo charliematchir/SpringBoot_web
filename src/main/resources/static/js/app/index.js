@@ -29,7 +29,7 @@ var main = {
             contentType: 'application/json; charset=utf-8/euc-kr',
             data: JSON.stringify(data)
         }).done(function () {
-            alert('article submited.');
+            alert('Article submited.');
             window.location.href = '/';
         }).fail(function (error) {
             alert(JSON.stringify(error));

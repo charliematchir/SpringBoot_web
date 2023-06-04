@@ -1,8 +1,13 @@
 package com.charlie.admin;
+import com.charlie.admin.config.auth.SecurityConfig;
+import com.charlie.admin.web.HelloController;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.FilterType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -13,10 +18,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
+@ExtendWith(SpringExtension.class)
+@WebMvcTest(controllers = HelloController.class,
+        excludeFilters = {
+                @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = SecurityConfig.class)
+        }
+)
 // SpringRunner is spring executor. It links springboot test and junit.
 // annotation for web
-@ExtendWith(SpringExtension.class)
-@WebMvcTest
 public class HelloControllerTest {
     // inject spring controlled bean
     // bean is reusable software component controlled by spring container
@@ -27,6 +36,9 @@ public class HelloControllerTest {
     @Autowired
     private MockMvc mvc;
 
+
+
+    @WithMockUser(roles="USER")
     @Test
     public void hello() throws Exception {
         String hello = "hello";
@@ -38,6 +50,7 @@ public class HelloControllerTest {
                 .andExpect(content().string(hello));
     }
 
+    @WithMockUser(roles="USER")
     @Test
     public void hellodto() throws Exception {
         String name = "hello";
